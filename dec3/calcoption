@@ -1,0 +1,59 @@
+const express = require('express')
+const app = express();
+
+app.get('/:operation/:num1/:num2', (req, res) => {
+    let operation = req.params.operation
+    let objRes = {
+        num1: `${parseInt(req.params.num1)}`,
+        num2: `${parseInt(req.params.num2)}`,
+        result: `${parseInt(req.params.num1)} ${operation} ${parseInt(req.params.num2)}`
+    } 
+    if(req.params.operation === "add"){
+        res.json(objRes)
+    // res.send({
+    //     num1: `${parseInt(req.params.num1)}`,
+    //     num2: `${parseInt(req.params.num2)}`,
+    //     result: `${parseInt(req.params.num1) + parseInt(req.params.num2)}`
+    // })
+    } else if(req.params.operation === "sub"){
+    res.send({
+        num1: `${parseInt(req.params.num1)}`,
+        num2: `${parseInt(req.params.num2)}`,
+        result: `${parseInt(req.params.num1) - parseInt(req.params.num2)}`
+    })
+    } else if(req.params.operation === "mult"){
+        res.send({
+            num1: `${parseInt(req.params.num1)}`,
+            num2: `${parseInt(req.params.num2)}`,
+            result: `${parseInt(req.params.num1) * parseInt(req.params.num2)}`
+        })
+    } else if(req.params.operation === "div"){
+        res.send({
+            num1: `${parseInt(req.params.num1)}`,
+            num2: `${parseInt(req.params.num2)}`,
+            result: `${Math.round(parseInt(req.params.num1) / parseInt(req.params.num2))}`
+        })
+    }
+})
+console.log(operation)
+
+// app.get('/:mult/:num1/:num2', (req, res) => {
+//     res.send({
+//         num1: `${parseInt(req.params.num1)}`,
+//         num2: `${parseInt(req.params.num2)}`,
+//         result: `${parseInt(req.params.num1) * parseInt(req.params.num2)}`
+//     })
+// })
+
+// app.get('/:div/:num1/:num2', (req, res) => {
+//     res.send({
+//         num1: `${parseInt(req.params.num1)}`,
+//         num2: `${parseInt(req.params.num2)}`,
+//         result: `${parseInt(req.params.num1) / parseInt(req.params.num2)}`
+//     })
+// })
+
+app.listen(3000, () => {
+    console.log("Listening to port 3000");
+    
+})
